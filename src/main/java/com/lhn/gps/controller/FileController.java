@@ -28,6 +28,13 @@ public class FileController {
         return R.ok(gpsFileService.upload(file));
     }
 
+    /**
+     * 下载文件
+     * @param path
+     * @param type
+     * @param response
+     * @throws Exception
+     */
     @GetMapping("/download")
     public void download(@RequestParam(value = "path") String path,
                          @RequestParam(value = "type",required = false,defaultValue = "download") String type,
