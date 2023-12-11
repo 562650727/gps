@@ -1,0 +1,37 @@
+package com.lhn.gps.config;
+
+import com.lhn.gps.utils.MinioTemplate;
+import lombok.Data;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Data
+@Configuration
+@ConfigurationProperties(prefix = "minio")
+public class MinioConfig {
+    /**
+     * 服务地址（服务接口地址）
+     */
+    private String url;
+    /**
+     * 用户名
+     */
+    private String accessKey;
+    /**
+     * 密码
+     */
+    private String secretKey;
+    /**
+     * 存储桶名称
+     */
+    private String bucketName;
+
+
+    private Integer partSize;
+
+    @Bean
+    public MinioTemplate getMinioClient() {
+        return new MinioTemplate(url,accessKey, secretKey,partSize);
+    }
+}

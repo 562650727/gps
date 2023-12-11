@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    dynamic:
+      primary: gps
+      strict: false
+      datasource:
+        gps:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/gps?useUnicode=true&character_set_server=utf8mb4&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+          username: root
+          password: 123456
+  servlet:
+    multipart:
+      #最大上传
+      max-file-size: 1000MB
+  elasticsearch:
+    uris: localhost:9200
+    
+
+#发邮件
+email:
+  from: 562650727@qq.com
+  notifications: 562650727@qq.com
+
+
+#微信小程序开发配置
+wx:
+  appId: wxb361c80b5223cda4
+  appSecret: ebe7ea4dcf302a60469830f541ac8b59
