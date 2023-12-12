@@ -7,6 +7,7 @@ import com.lhn.gps.service.GpsUserInfoService;
 import com.lhn.gps.utils.MinioTemplate;
 import io.minio.StatObjectResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.security.MD5Encoder;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,8 @@ class GpsApplicationTests {
      */
     @Test
     void getUserInfo(){
+        MD5Encoder.encode;
+        gpsUserInfoService.save(GpsUserInfo.builder().userName("liuhainan").password(MD5Encoder.encode("123456")).build());
         System.out.println(email);
         List<GpsUserInfo> list = gpsUserInfoService.lambdaQuery().list();
         System.out.println(list);
