@@ -1,24 +1,22 @@
 package com.lhn.gps;
 
 import cn.hutool.json.JSONUtil;
-import com.lhn.gps.entity.GpsBlob;
 import com.lhn.gps.entity.GpsUserInfo;
 import com.lhn.gps.service.GpsUserInfoService;
+import com.lhn.gps.utils.MD5Utils;
 import com.lhn.gps.utils.MinioTemplate;
 import io.minio.StatObjectResponse;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.security.MD5Encoder;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 //作用：声明当前类是springboot的测试类并且获取入口类上的相关信息 SpringBootApplication是入口类类名
@@ -32,9 +30,6 @@ class GpsApplicationTests {
 
     @Autowired
     private GpsUserInfoService gpsUserInfoService;
-
-    @Value("${email.from}")
-    private String email;
 
 
     /**
@@ -55,28 +50,20 @@ class GpsApplicationTests {
         log.warn("下载文件地址 :{}",url);
     }
 
-    /**
-     * 发邮件
-     */
-    @Test
-    void sendMailTest(){
-        List<GpsBlob> gpsBlobs1 = new ArrayList<>();
-        gpsBlobs1.add(GpsBlob.builder().id(1).build());
-        List<GpsBlob> gpsBlobs2 = new ArrayList<>();
-        gpsBlobs2.addAll(gpsBlobs1);
-        gpsBlobs2.get(0).setId(2);
-        System.out.println(gpsBlobs2.get(0));
-        System.out.println(gpsBlobs1.get(0));
-    }
 
     /**
      * 用户信息
      */
     @Test
-    void getUserInfo(){
-        MD5Encoder.encode;
-        gpsUserInfoService.save(GpsUserInfo.builder().userName("liuhainan").password(MD5Encoder.encode("123456")).build());
-        System.out.println(email);
+    void getUserInfo() throws Exception {
+        //创建用户信息
+        GpsUserInfo userInfo = GpsUserInfo.builder().
+                userName("liuhainan").
+                createTime(new Date()).
+                phone("15210664980").
+                password(MD5Utils.encryMD5Salt("123456")).build();
+        gpsUserInfoService.save(userInfo);
+        //查看用户信息
         List<GpsUserInfo> list = gpsUserInfoService.lambdaQuery().list();
         System.out.println(list);
     }
