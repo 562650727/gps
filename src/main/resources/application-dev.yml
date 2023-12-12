@@ -2,17 +2,13 @@ spring:
   datasource:
     dynamic:
       primary: gps
-      strict: false
+      strict: true
       datasource:
         gps:
           driver-class-name: com.mysql.cj.jdbc.Driver
           url: jdbc:mysql://127.0.0.1:3306/gps?useUnicode=true&character_set_server=utf8mb4&serverTimezone=Asia/Shanghai&allowMultiQueries=true
           username: root
           password: 123456
-  servlet:
-    multipart:
-      #最大上传
-      max-file-size: 1000MB
   elasticsearch:
     uris: localhost:9200
     

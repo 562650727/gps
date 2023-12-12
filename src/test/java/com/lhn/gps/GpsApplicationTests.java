@@ -2,25 +2,39 @@ package com.lhn.gps;
 
 import cn.hutool.json.JSONUtil;
 import com.lhn.gps.entity.GpsBlob;
+import com.lhn.gps.entity.GpsUserInfo;
+import com.lhn.gps.service.GpsUserInfoService;
 import com.lhn.gps.utils.MinioTemplate;
 import io.minio.StatObjectResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootTest
+//作用：声明当前类是springboot的测试类并且获取入口类上的相关信息 SpringBootApplication是入口类类名
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = GpsApplication.class)
 @Slf4j
 class GpsApplicationTests {
 
     @Autowired
     private MinioTemplate minioTemplate;
+
+    @Autowired
+    private GpsUserInfoService gpsUserInfoService;
+
+    @Value("${email.from}")
+    private String email;
+
 
     /**
      * minio上传下载测试
@@ -55,10 +69,12 @@ class GpsApplicationTests {
     }
 
     /**
-     * 测试es
+     * 用户信息
      */
     @Test
-    void search(){
-
+    void getUserInfo(){
+        System.out.println(email);
+        List<GpsUserInfo> list = gpsUserInfoService.lambdaQuery().list();
+        System.out.println(list);
     }
 }

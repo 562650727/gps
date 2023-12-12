@@ -4,6 +4,10 @@ server:
 spring:
   application:
     name: gps
+  servlet:
+    multipart:
+      #最大上传
+      max-file-size: 1000MB
 #minio
 minio:
   url: http://127.0.0.1:9000
