@@ -36,7 +36,7 @@ public class WebLogAspect {
 
 
     @Around("webLog()")
-    public void doAround(ProceedingJoinPoint point) throws Throwable {
+    public Object doAround(ProceedingJoinPoint point) throws Throwable {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         log.info(JSONUtil.toJsonStr(request));
@@ -48,5 +48,6 @@ public class WebLogAspect {
         log.info(JSONUtil.toJsonStr(method));
         Object result = point.proceed();
         log.info(JSONUtil.toJsonStr(result));
+        return result;
     }
 }

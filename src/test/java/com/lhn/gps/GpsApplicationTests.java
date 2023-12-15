@@ -5,6 +5,7 @@ import com.lhn.gps.entity.GpsUserInfo;
 import com.lhn.gps.service.GpsUserInfoService;
 import com.lhn.gps.utils.MD5Utils;
 import com.lhn.gps.utils.MinioTemplate;
+import com.lhn.gps.vo.SearchVO;
 import io.minio.StatObjectResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -67,4 +69,38 @@ class GpsApplicationTests {
         List<GpsUserInfo> list = gpsUserInfoService.lambdaQuery().list();
         System.out.println(list);
     }
+
+    /**
+     * 搜索
+     */
+    @Test
+    void search(){
+        SearchVO searchVO = new SearchVO();
+        searchVO.setGroupInfo(SearchVO.GroupInfo.builder().filterCondition(Collections.singletonList("fileType")).intention("找信息").build());
+        searchVO.setFileInfos(Collections.singletonList(SearchVO.FileInfos.builder().build()));
+        log.info(JSONUtil.toJsonStr(searchVO));
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
