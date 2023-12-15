@@ -66,6 +66,7 @@ public class GpsFileServiceImpl extends ServiceImpl<GpsFileDao, GpsFile> impleme
     @Override
     public void download(String path, String type, HttpServletResponse response) throws Exception {
         String bucketName = minioConfig.getBucketName();
+        path = URLEncoder.encode(path);
         GetObjectResponse res = minioTemplate.client.getObject(GetObjectArgs.builder().bucket(bucketName).object(path).build());
         ServletOutputStream outputStream = response.getOutputStream();
         BufferedOutputStream out = new BufferedOutputStream(outputStream);
