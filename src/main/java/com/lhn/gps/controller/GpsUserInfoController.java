@@ -38,4 +38,5 @@ public class GpsUserInfoController {
         return R.ok(gpsUserInfoService.uploadPhoto(file,userId));
     }
 
+    //merge
 }
