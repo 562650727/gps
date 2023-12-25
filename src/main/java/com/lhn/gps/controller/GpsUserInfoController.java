@@ -37,4 +37,8 @@ public class GpsUserInfoController {
                     @RequestParam(value = "userId") String userId) throws Exception {
         return R.ok(gpsUserInfoService.uploadPhoto(file,userId));
     }
+
+    //merge
+
+    //master;update
 }
