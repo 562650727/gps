@@ -3,9 +3,7 @@ package com.lhn.gps;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.json.JSONUtil;
-import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTUtil;
-import cn.hutool.jwt.signers.JWTSigner;
 import com.lhn.gps.entity.GpsUserInfo;
 import com.lhn.gps.service.GpsUserInfoService;
 import com.lhn.gps.utils.MD5Utils;
@@ -90,6 +88,11 @@ class GpsApplicationTests {
         log.warn("有效期:{}", date);
         String token = JWTUtil.createToken(map, "gps".getBytes());
         log.warn("token:{},是否登录:{}", token, JWTUtil.verify(token, "gps".getBytes()));
+    }
+
+    @Test
+    void sort(){
+      String  a = "涨涨涨1";
     }
 }
 
