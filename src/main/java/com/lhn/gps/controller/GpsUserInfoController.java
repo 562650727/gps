@@ -26,7 +26,7 @@ public class GpsUserInfoController {
         return R.ok(list);
     }
 
-    /**
+    /**qq
      * 上传头像
      * @param file
      * @return
