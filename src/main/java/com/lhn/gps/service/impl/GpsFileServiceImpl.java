@@ -25,7 +25,6 @@ import java.io.ByteArrayOutputStream;
 import java.net.URLEncoder;
 import java.util.Date;
 
-
 @Slf4j
 @Service("gpsFileService")
 public class GpsFileServiceImpl extends ServiceImpl<GpsFileDao, GpsFile> implements GpsFileService {

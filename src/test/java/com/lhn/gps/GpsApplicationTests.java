@@ -90,9 +90,10 @@ class GpsApplicationTests {
         log.warn("token:{},是否登录:{}", token, JWTUtil.verify(token, "gps".getBytes()));
     }
 
+
     @Test
-    void sort(){
-      String  a = "涨涨涨1";
+    public void getOpenId(){
+
     }
 }
 
